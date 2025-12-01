@@ -1,0 +1,36 @@
+/* app-menu.component.scss */
+.menu-container {
+  width: 220px;
+  background-color: #1f2937;
+  color: #fff;
+  height: 100vh;
+  padding: 1rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1rem;
+
+      a {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+
+        i {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          background-color: #374151;
+        }
+      }
+    }
+  }
+}

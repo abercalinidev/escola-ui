@@ -1,0 +1,104 @@
+<div class="surface-section p-4 md:p-6 lg:p-7">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <p-card class="shadow-3 border-round-lg p-card-custom">
+
+      <!-- Título -->
+      <h1 class="text-2xl font-bold mb-6">{{id ? 'Editar Representante' : 'Cadastro de Representante'}}</h1>
+
+      <!-- Dados Pessoais -->
+      <h2 class="text-xl font-semibold mb-2">Dados Pessoais</h2>
+      <div class="grid formgrid p-fluid gap-3">
+
+        <div class="field col-12 md:col-5">
+          <label for="nome" class="font-semibold">Nome</label>
+          <input pInputText id="nome" name="nome" required [(ngModel)]="representante.nome" />
+        </div>
+
+        <div class="field col-12 md:col-5">
+          <label for="sobrenome" class="font-semibold">Sobrenome</label>
+          <input pInputText id="sobrenome" name="sobrenome" required [(ngModel)]="representante.sobrenome" />
+        </div>
+      </div>  
+
+      <div class="grid formgrid p-fluid gap-3">
+        <div class="field col-12 md:col-2">
+          <label for="cpf" class="font-semibold">CPF</label>
+          <p-inputMask mask="999.999.999-99" id="cpf" name="cpf" required [(ngModel)]="representante.cpf"></p-inputMask>
+        </div>
+
+        <div class="field col-12 md:col-2">
+          <label for="celular" class="font-semibold">Celular</label>
+          <p-inputMask mask="(99) 99999-9999" id="celular" name="celular" [(ngModel)]="representante.celular"></p-inputMask>
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <label for="email" class="font-semibold">Email</label>
+          <input pInputText type="email" id="email" name="email" [(ngModel)]="representante.email" />
+        </div>
+      </div>  
+
+      <p-divider class="my-4"></p-divider>
+
+      <!-- Endereço -->
+      <h2 class="text-xl font-semibold mb-3">Endereço</h2>
+      <div class="grid formgrid p-fluid gap-3">
+
+        <div class="field col-12 md:col-4">
+          <label for="cep" class="font-semibold">CEP</label>
+          <div class="flex gap-2">
+            <p-inputMask mask="99999-999" id="cep" name="cep"
+              [(ngModel)]="representante.endereco.cep"
+              (onComplete)="buscarEndereco()"
+              class="flex-auto"></p-inputMask>
+            <button pButton type="button" label="Verificar" icon="pi pi-search" class="p-button-outlined" (click)="buscarEndereco()"></button>
+          </div>
+        </div>
+      </div>  
+
+      <div class="grid formgrid p-fluid gap-3">
+        <div class="field col-12 md:col-4">
+          <label for="rua" class="font-semibold">Rua</label>
+          <input pInputText id="rua" name="rua" [(ngModel)]="representante.endereco.rua" />
+        </div>
+
+        <div class="field col-12 md:col-2">
+          <label for="numero" class="font-semibold">Número</label>
+          <input pInputText id="numero" name="numero" [(ngModel)]="representante.endereco.numero" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="bairro" class="font-semibold">Bairro</label>
+          <input pInputText id="bairro" name="bairro" [(ngModel)]="representante.endereco.bairro" />
+        </div>
+      </div>
+
+      <div class="grid formgrid p-fluid" >
+        <div class="field col-12 md:col-4">
+          <label for="cidade" class="font-semibold">Cidade</label>
+          <input pInputText id="cidade" name="cidade" [(ngModel)]="representante.endereco.cidade" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="estado" class="font-semibold">Estado</label>
+          <input pInputText id="estado" name="estado" [(ngModel)]="representante.endereco.estado" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="complemento" class="font-semibold">Complemento</label>
+          <input pInputText id="complemento" name="complemento" [(ngModel)]="representante.endereco.complemento" />
+        </div>
+
+      </div>
+
+      <!-- Botões -->
+      <div class="flex justify-content-end mt-4 gap-2">
+        <button pButton label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+        <button pButton label="Cancelar" icon="pi pi-times" class="p-button-secondary" type="button"></button>
+      </div>
+
+    </p-card>
+    
+    <p-toast />
+
+  </form>
+</div>

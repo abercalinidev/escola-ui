@@ -1,1 +1,239 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'primeflex/primeflex.css';
+
+/* =======================
+   LAYOUT PRINCIPAL
+======================= */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+
+  app-menu {
+    flex: 0 0 220px; // largura fixa do menu
+  }
+
+  .app-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9fafb;
+    overflow-x: auto;
+  }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+
+    app-menu {
+      width: 100%;
+      height: auto;
+    }
+
+    .app-content {
+      padding: 10px;
+    }
+  }
+}
+
+/* =======================
+   MENU LATERAL
+======================= */
+.menu-container {
+  width: 220px;
+  background-color: #1f2937;
+  color: #fff;
+  height: 100vh;
+  padding: 1rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1rem;
+
+      a {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+
+        i {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          background-color: #374151;
+        }
+
+        &.active {
+          background-color: #3b82f6;
+        }
+      }
+    }
+  }
+}
+
+/* =======================
+   CARDS DE RESUMO
+======================= */
+.summary-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.summary-title {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.summary-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+/* =======================
+   TABELA PROFISSIONAL
+======================= */
+.p-datatable-wrapper {
+  border-radius: 12px !important;
+}
+
+.p-table {
+  border-radius: 12px;
+}
+
+.p-datatable thead th {
+  background: #fafafa !important;
+  font-weight: 600;
+  padding: 0.9rem !important;
+}
+
+.p-datatable tbody tr {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.p-datatable tbody tr:hover {
+  background: #f5f7fa !important;
+  transform: scale(1.005);
+  transition: all 0.15s ease-in-out;
+}
+
+.p-datatable table {
+  border-collapse: separate !important;
+  border-spacing: 0 10px !important;
+}
+
+.p-inputtext {
+  border-radius: 8px !important;
+}
+
+/* =======================
+   FORMULÁRIOS
+======================= */
+label,
+.form-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+input.p-inputtext,
+.p-inputmask,
+.p-dropdown {
+  width: 100%;
+  padding: 0.55rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+input.p-inputtext:focus,
+.p-inputmask:focus,
+.p-dropdown:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* =======================
+   BOTÕES E TOOLBAR
+======================= */
+.p-button {
+  min-width: 120px;
+  border-radius: 8px !important;
+  padding: 0.6rem 1.2rem !important;
+}
+
+.p-toolbar {
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* =======================
+   STATUS DOT (ATIVO / INATIVO)
+======================= */
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-dot.active {
+  background-color: #22c55e; // verde
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+.status-dot.inactive {
+  background-color: #ef4444; // vermelho
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+.status-dot:hover {
+  transform: scale(1.2);
+}
+
+/* =======================
+   BREADCRUMB E PAGE HEADER
+======================= */
+.breadcrumb {
+  font-size: 0.9rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.page-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* =======================
+   RESPONSIVIDADE
+======================= */
+@media (max-width: 768px) {
+  p-card {
+    padding: 1.5rem;
+  }
+}

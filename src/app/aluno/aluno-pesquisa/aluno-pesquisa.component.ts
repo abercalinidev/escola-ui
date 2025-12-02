@@ -62,14 +62,32 @@ export class AlunoPesquisaComponent implements OnInit {
         });
     }
 
-  toggleSituacao(aluno : any) {
-
+  toggleSituacao(aluno : any) {    
+    if(aluno.situacao === "ATIVO") {
+      this.inativarAluno(aluno);
+    } else {
+      this.ativarAluno(aluno);
+    }
   }
 
   prepararEdicaoAluno() {
     if (this.alunoSelecionado) {
       this.router.navigate([`/aluno-cadastro/${this.alunoSelecionado.id}`]);
     }
+  }
+
+  inativarAluno(aluno : any) {
+    this.alunoService.inativarAluno(aluno.id).subscribe(() => {
+      this.messageService.add({severity: 'success', summary: 'Inativado com sucesso', detail: 'Inativado com sucesso'});
+      this.listarAlunos();  
+    });
+  }
+
+  ativarAluno(aluno : any) {
+    this.alunoService.ativarAluno(aluno.id).subscribe(() => {
+      this.messageService.add({severity: 'success', summary: 'Ativado com sucesso', detail: 'Ativado com sucesso'});
+      this.listarAlunos();  
+    });
   }
 
 }

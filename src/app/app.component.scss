@@ -1,0 +1,44 @@
+/* ============================================
+   LAYOUT PRINCIPAL
+============================================ */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+
+  /* ANGULAR CUSTOM TAG FIX */
+  app-menu {
+    display: block;
+    flex: 0 0 220px;
+  }
+
+  .app-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9fafb;
+
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================
+   MOBILE
+============================================ */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+
+    app-menu {
+      width: 100%;
+      height: auto !important;
+      position: relative;
+    }
+
+    .app-content {
+      height: auto !important;
+      overflow-y: visible !important;
+      padding: 15px;
+    }
+  }
+}

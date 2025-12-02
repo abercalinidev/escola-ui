@@ -27,6 +27,14 @@ export class AlunoService {
     return this.httpClient.get<any>(`${environment.apisConnect}/api/v1/alunos/buscar/${alunoId}`);
   }
 
+  public inativarAluno(alunoId : any) : Observable<any> {
+    return this.httpClient.put<any>(`${environment.apisConnect}/api/v1/alunos/inativar/${alunoId}`, null);
+  }
+
+  public ativarAluno(alunoId : any) : Observable<any> {
+    return this.httpClient.put<any>(`${environment.apisConnect}/api/v1/alunos/ativar/${alunoId}`, null);
+  }
+
   public listarAlunos() : Observable<any> {
     return this.httpClient.get<any>(`${environment.apisConnect}/api/v1/alunos/listar`);
   }

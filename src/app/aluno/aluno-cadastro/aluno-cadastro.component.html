@@ -1,0 +1,167 @@
+<div class="surface-section p-4 md:p-6 lg:p-7">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <p-card class="shadow-3 border-round-lg p-card-custom">
+
+      <!-- Título -->
+      <h1 class="text-2xl font-bold mb-6">
+        {{ aluno.id ? 'Editar Aluno' : 'Cadastro de Aluno' }}
+      </h1>
+
+      <!-- DADOS PESSOAIS -->
+      <h2 class="text-xl font-semibold mb-3">Dados Pessoais</h2>
+      <div class="grid formgrid p-fluid">
+
+        <div class="field col-12 md:col-5">
+          <label for="nome" class="font-semibold">Nome</label>
+          <input pInputText id="nome" name="nome" required [(ngModel)]="aluno.nome" />
+        </div>
+
+        <div class="field col-12 md:col-5">
+          <label for="sobrenome" class="font-semibold">Sobrenome</label>
+          <input pInputText id="sobrenome" name="sobrenome" required [(ngModel)]="aluno.sobrenome" />
+        </div>
+
+        <div class="field col-12 md:col-2">
+          <label for="idade" class="font-semibold">Idade</label>
+          <input pInputText type="number" id="idade" name="idade" required [(ngModel)]="aluno.idade" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="dataNascimento" class="font-semibold">Data de Nascimento</label>
+              <p-datepicker  id="dataNascimento" name="dataNascimento" [(ngModel)]="aluno.dataNascimento" 
+                dateFormat="dd/mm/yy" [showIcon]="true"(onSelect)="onDataNascimentoChange($event)"class="max-w-full" />
+        </div>
+
+        <div class="field col-12 md:col-8">
+          <label for="serieAluno" class="font-semibold">Série</label>
+          <p-autoComplete 
+            [(ngModel)]="aluno.serieAluno"
+            name="serieAluno"
+            id="serieAluno"
+            field="label"
+            class="w-full"
+            [suggestions]="filteredSeries"
+            (completeMethod)="searchSeries($event)"
+            [dropdown]="true"
+            placeholder="Selecione a Série">
+          </p-autoComplete>
+        </div>
+
+      </div>
+
+      <p-divider class="my-4"></p-divider>
+
+      <!-- ENDEREÇO -->
+      <h2 class="text-xl font-semibold mb-3">Endereço</h2>
+
+      <div class="grid formgrid p-fluid">
+
+        <div class="field col-12 md:col-3">
+          <label for="cep" class="font-semibold">CEP</label>
+          <p-inputMask 
+            mask="99999-999"
+            id="cep"
+            name="cep"
+            [(ngModel)]="aluno.endereco.cep"
+            (onComplete)="buscarEndereco()">
+          </p-inputMask>
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <label for="rua" class="font-semibold">Rua</label>
+          <input pInputText id="rua" name="rua" [(ngModel)]="aluno.endereco.rua" />
+        </div>
+
+        <div class="field col-12 md:col-3">
+          <label for="numero" class="font-semibold">Número</label>
+          <input pInputText id="numero" name="numero" [(ngModel)]="aluno.endereco.numero" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="bairro" class="font-semibold">Bairro</label>
+          <input pInputText id="bairro" name="bairro" [(ngModel)]="aluno.endereco.bairro" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="cidade" class="font-semibold">Cidade</label>
+          <input pInputText id="cidade" name="cidade" [(ngModel)]="aluno.endereco.cidade" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="estado" class="font-semibold">Estado</label>
+          <input pInputText id="estado" name="estado" [(ngModel)]="aluno.endereco.estado" />
+        </div>
+
+        <div class="field col-12 md:col-12">
+          <label for="complemento" class="font-semibold">Complemento</label>
+          <input pInputText id="complemento" name="complemento" [(ngModel)]="aluno.endereco.complemento" />
+        </div>
+
+      </div>
+
+      <p-divider class="my-4"></p-divider>
+
+      <!-- REPRESENTANTES -->
+      <h2 class="text-xl font-semibold mb-3">Representantes</h2>
+      <p-card class="shadow-3 border-round-lg">
+
+        <p-table 
+          [value]="representantes"
+          [(selection)]="representantesSelecionados"
+          dataKey="id"
+          selectionMode="multiple"
+          [paginator]="true"
+          [rows]="10"
+          #dt1
+          [globalFilterFields]="['nome', 'sobrenome', 'email']"
+          (selectionChange)="onSelecionarRepresentantes()">
+
+          <!-- CAPTION -->
+          <ng-template pTemplate="caption">
+            <div class="flex justify-content-end">
+              <p-iconfield iconPosition="left">
+                <p-inputicon><i class="pi pi-search"></i></p-inputicon>
+                <input pInputText type="text" #txtFiltro 
+                  (input)="dt1.filterGlobal(txtFiltro.value, 'contains')" 
+                  placeholder="Buscar por nome..." />
+              </p-iconfield>
+            </div>
+          </ng-template>
+
+          <!-- HEADER -->
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 50px">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+              <th>Email</th>
+              <th>Telefone</th>
+            </tr>
+          </ng-template>
+
+          <!-- BODY -->
+          <ng-template pTemplate="body" let-r>
+            <tr [pSelectableRow]="r">
+              <td><p-tableCheckbox [value]="r"></p-tableCheckbox></td>
+              <td>{{ r.nome }} {{ r.sobrenome }}</td>
+              <td>{{ r.email }}</td>
+              <td>{{ r.celular }}</td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+      </p-card>
+
+      <!-- BOTÕES -->
+      <div class="flex justify-content-end mt-4 gap-2">
+        <button pButton label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+        <button pButton label="Cancelar" icon="pi pi-times" type="button" class="p-button-secondary"></button>
+      </div>
+
+    </p-card>
+
+    <p-toast></p-toast>
+  </form>
+</div>

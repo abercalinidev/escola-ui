@@ -10,6 +10,7 @@ export class MenuComponent {
   menuItems = [
     { label: 'Dashboard', icon: 'pi pi-home', route: '/' },
     { label: 'Representantes', icon: 'pi pi-users', route: '/representante-pesquisa' },
+    { label: 'Alunos', icon: 'pi pi-users', route: '/aluno-pesquisa' },
     { label: 'Relatórios', icon: 'pi pi-chart-line', route: '/relatorios' },
   ];
 }

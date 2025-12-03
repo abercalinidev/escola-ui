@@ -11,6 +11,7 @@ export class MenuComponent {
     { label: 'Dashboard', icon: 'pi pi-home', route: '/' },
     { label: 'Representantes', icon: 'pi pi-users', route: '/representante-pesquisa' },
     { label: 'Alunos', icon: 'pi pi-users', route: '/aluno-pesquisa' },
+    { label: 'Informações Gerais', icon: 'pi pi-users', route: '/informacaogeral-pesquisa' },
     { label: 'Relatórios', icon: 'pi pi-chart-line', route: '/relatorios' },
   ];
 }

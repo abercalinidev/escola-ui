@@ -49,9 +49,6 @@ export class AlunoCadastroComponent implements OnInit {
     }
   }  
 
-  /* =======================
-        CEP
-  ======================== */
   buscarEndereco() {
     this.alunoService.buscarCep(this.aluno.endereco.cep).subscribe(response => {
       if (response.erro) {
@@ -73,9 +70,6 @@ export class AlunoCadastroComponent implements OnInit {
     });
   }
 
-  /* =======================
-        Séries
-  ======================== */
   listarSeries() {
     this.series = [
       { label: 'Primeiro Ano', value: 'PRIMEIRO_ANO' },
@@ -93,10 +87,6 @@ export class AlunoCadastroComponent implements OnInit {
       s.label.toLowerCase().includes(query)
     );
   }
-
-  /* =======================
-        Representantes
-  ======================== */
 
   listarRepresentantes(callback?: () => void) {
     this.representanteService.listarRepresentantes()
@@ -130,10 +120,6 @@ export class AlunoCadastroComponent implements OnInit {
     }));
   }
 
-
-  /* =======================
-        Data de Nascimento
-  ======================== */
   onDataNascimentoChange(event: Date) {
     if (event) {
       const dia = String(event.getDate()).padStart(2, '0');
@@ -144,10 +130,6 @@ export class AlunoCadastroComponent implements OnInit {
     }
   }
 
-
-  /* =======================
-        SALVAR ALUNO
-  ======================== */
   salvarAluno(form : any) {
     this.alunoService.salvarAluno(this.aluno)
       .pipe(
@@ -184,9 +166,6 @@ export class AlunoCadastroComponent implements OnInit {
     });
   }
 
-  /* =======================
-        EDITAR / BUSCAR POR ID
-  ======================== */
   buscarAlunoPorId() {
     this.alunoService.buscarAlunoPorId(this.id)
       .pipe(
@@ -204,11 +183,9 @@ export class AlunoCadastroComponent implements OnInit {
 
         this.aluno = response;
 
-        // Primeiro carregar os representantes
         this.listarRepresentantes(() => {
-          // Depois marcar os selecionados do aluno
-          this.marcarRepresentantesDoAluno();
-        });
+        this.marcarRepresentantesDoAluno();
+      });
 
         this.listarSeries();
       });

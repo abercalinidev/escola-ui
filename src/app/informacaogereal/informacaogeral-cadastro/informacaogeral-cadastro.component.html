@@ -1,0 +1,109 @@
+<div class="surface-section p-4 md:p-6 lg:p-7">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <p-card class="shadow-3 border-round-lg p-card-custom">
+
+      <h1 class="text-2xl font-bold mb-6">
+        {{ id ? 'Editar Informações Gerais' : 'Cadastro de Informações Gerais' }}
+      </h1>
+
+      <!-- AUTOCOMPLETE ALUNO -->
+      <div class="field col-12 md:col-12">
+        <label class="font-semibold">Aluno</label>
+        <p-autoComplete 
+          [(ngModel)]="alunoSelecionado" 
+          [suggestions]="alunosFiltrados" 
+          (completeMethod)="filtrarAlunos($event)"
+          field="nome"
+          optionLabel="nome"
+          class="w-full"
+          [dropdown]="true"
+          placeholder="Digite o nome do aluno"
+          name="aluno"
+          id="aluno">
+        </p-autoComplete>
+      </div>
+
+      <p-divider></p-divider>
+
+      <div class="grid formgrid p-fluid">
+        <div class="field col-12 md:col-3">
+            <label for="situacaoCafeManha" class="font-semibold">Escolha a situação do café da manha</label>
+            <p-autoComplete 
+              [(ngModel)]="informacaoGeral.situacaoCafeManha"
+              name="situacaoCafeManha"
+              id="situacaoCafeManha"
+              field="label"
+              class="w-full"
+              [suggestions]="filteredSituacoesCafeManha"
+              (completeMethod)="searchSituacoesCafeManha($event)"
+              [dropdown]="true"
+              placeholder="Selecione a situação">
+            </p-autoComplete>
+          </div>
+
+          <div class="field col-12 md:col-3">
+            <label for="situacaoAlmoco" class="font-semibold">Escolha a situação do almoço</label>
+            <p-autoComplete 
+              [(ngModel)]="informacaoGeral.situacaoAlmoco"
+              name="situacaoAlmoco"
+              id="situacaoAlmoco"
+              field="label"
+              class="w-full"
+              [suggestions]="filteredSituacoesAlmoco"
+              (completeMethod)="searchSituacoesAlmoco($event)"
+              [dropdown]="true"
+              placeholder="Selecione a situação">
+            </p-autoComplete>
+          </div>
+
+          <div class="field col-12 md:col-3">
+            <label for="situacaoCafeTarde" class="font-semibold">Escolha a situação do cafe da tarde</label>
+            <p-autoComplete 
+              [(ngModel)]="informacaoGeral.situacaoCafeTarde"
+              name="situacaoCafeTarde"
+              id="situacaoCafeTarde"
+              field="label"
+              class="w-full"
+              [suggestions]="filteredSituacoesCafeTarde"
+              (completeMethod)="searchSituacoesCafeTarde($event)"
+              [dropdown]="true"
+              placeholder="Selecione a situação">
+            </p-autoComplete>
+          </div>
+
+          <div class="field col-12 md:col-3">
+            <label for="dataCadastro" class="font-semibold">Data do registro</label>
+            <p-datepicker
+              id="dataCadastro"
+              name="dataCadastro"
+              [(ngModel)]="informacaoGeral.dataCadastro"
+              dateFormat="dd/mm/yy"
+              [showIcon]="true"
+              (onSelect)="onDataCadastroChange($event)"
+              class="w-full">
+            </p-datepicker>
+          </div>
+        </div>    
+
+        <p-divider></p-divider>
+
+      <h2 class="text-xl font-semibold mb-3">Observação</h2>
+      <textarea
+        pInputTextarea
+        name="observacao"
+        rows="4"
+        class="w-full"
+        placeholder="Escreva alguma observação..."
+        [(ngModel)]="informacaoGeral.observacao">
+      </textarea>
+
+      <div class="flex justify-content-end mt-4 gap-2">
+        <button pButton label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+        <button pButton label="Cancelar" icon="pi pi-times" type="button" class="p-button-secondary" (click)="voltar()"></button>
+      </div>
+
+    </p-card>
+
+    <p-toast></p-toast>
+  </form>
+</div>

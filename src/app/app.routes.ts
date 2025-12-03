@@ -4,6 +4,8 @@ import { RepresentanteCadastroComponent } from './representante/representante-ca
 import { RepresentantePesquisaComponent } from './representante/representante-pesquisa/representante-pesquisa.component';
 import { AlunoCadastroComponent } from './aluno/aluno-cadastro/aluno-cadastro.component';
 import { AlunoPesquisaComponent } from './aluno/aluno-pesquisa/aluno-pesquisa.component';
+import { InformacaogeralCadastroComponent } from './informacaogereal/informacaogeral-cadastro/informacaogeral-cadastro.component';
+import { InformacaogeralPesquisaComponent } from './informacaogereal/informacaogeral-pesquisa/informacaogeral-pesquisa.component';
 
 export const routes: Routes = [
     {path : 'representante-cadastro', component : RepresentanteCadastroComponent},
@@ -13,4 +15,9 @@ export const routes: Routes = [
     {path : 'aluno-cadastro', component : AlunoCadastroComponent},
     {path : 'aluno-pesquisa', component : AlunoPesquisaComponent},
     {path : 'aluno-cadastro/:id', component : AlunoCadastroComponent},
+
+    {path : 'informacaogeral-cadastro', component : InformacaogeralCadastroComponent},
+    {path : 'informacaogeral-pesquisa', component : InformacaogeralPesquisaComponent},
+    {path : 'informacaogeral-cadastro/:id', component : InformacaogeralCadastroComponent},
+
 ];
